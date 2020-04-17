@@ -15,18 +15,22 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-
+//Superadministrador
 Route::get('/admin', function () {
     return view('admin/dashboard');
 });
 
+//Clientes que utilizarán el sistema
+Route::get('/client', function () {
+    return view('client/dashboard');
+});
+
+//Clientes que solicitarán citas
 Route::get('/customer', function () {
     return view('customer/dashboard');
 });
 
-Route::get('/client', function () {
-    return view('client/dashboard');
-});
+
 
 Route::middleware(['auth'])->group(function () {
 	

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -40,7 +41,6 @@ class LoginController extends Controller
     }
 
     public function redirectTo(){
-        
         // User role
         $role = Auth::user()->roles[0]->id;
 
@@ -56,5 +56,9 @@ class LoginController extends Controller
                 return '/customer';
             break;  
         }
+    }
+
+    protected function loggedOut(Request $request) {
+        return redirect('/login');
     }
 }

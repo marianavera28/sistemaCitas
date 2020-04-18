@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,25 +16,28 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-//Superadministrador
-Route::get('/admin', function () {
-    return view('admin/dashboard');
-});
-
-//Clientes que utilizarán el sistema
-Route::get('/client', function () {
-    return view('client/dashboard');
-});
-
-//Clientes que solicitarán citas
-Route::get('/customer', function () {
-    return view('customer/dashboard');
-});
-
+Route::get('/', function () {
+   return redirect('/login');
+});	
 
 
 Route::middleware(['auth'])->group(function () {
-	
+
+	//Superadministrador
+	Route::get('/admin', function () {
+	    return view('admin/dashboard');
+	});
+
+	//Clientes que utilizarán el sistema
+	Route::get('/client', function () {
+	    return view('client/dashboard');
+	});
+
+	//Clientes que solicitarán citas
+	Route::get('/customer', function () {
+	    return view('customer/dashboard');
+	});
+
 	//Roles
 	Route::post('roles/store', 'RoleController@store')->name('roles.store')
 		->middleware('permission:roles.create');

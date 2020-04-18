@@ -77,6 +77,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        dd($request->get('roles'));
         $user = User::find($id);
         $user->update($request->all());
 

@@ -69,6 +69,35 @@ class PermissionsTableSeeder extends Seeder
             'description'   => 'Podría eliminar cualquier rol del sistema',      
         ]);
 
+        //citas
+        Permission::create([
+            'name'          => 'Navegar citas',
+            'slug'          => 'citas.index',
+            'description'   => 'Lista y navega todos los citas del sistema',
+        ]);
 
+        Permission::create([
+            'name'          => 'Ver detalle de una cita',
+            'slug'          => 'citas.show',
+            'description'   => 'Ve en detalle cada cita del sistema',            
+        ]);
+        
+        Permission::create([
+            'name'          => 'Creación de citas',
+            'slug'          => 'citas.create',
+            'description'   => 'Podría crear nuevos citas en el sistema',
+        ]);
+        
+        Permission::create([
+            'name'          => 'Edición de citas',
+            'slug'          => 'citas.edit',
+            'description'   => 'Podría editar cualquier dato de una cita del sistema',
+        ]);
+        
+        Permission::create([
+            'name'          => 'Eliminar citas',
+            'slug'          => 'citas.destroy',
+            'description'   => 'Podría eliminar cualquier cita del sistema',      
+        ]);
     }
 }

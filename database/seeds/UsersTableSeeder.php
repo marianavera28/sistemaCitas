@@ -16,21 +16,10 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-
-        $user = new User();
-        $user->name = 'Admin';
-        $user->email = 'admin@example.com';
-        $user->email_verified_at = now();
-        $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
-        $user->remember_token = Str::random(10);
-        $user->save();
-
-        factory(App\User::class, 20)->create();
-
         Role::create([
-        	'name'		=> 'Admin',
-        	'slug'  	=> 'slug',
-        	'special' 	=> 'all-access'
+            'name'      => 'Admin',
+            'slug'      => 'admin',
+            'special'   => 'all-access'
         ]);
 
         Role::create([
@@ -45,9 +34,42 @@ class UsersTableSeeder extends Seeder
             'special'   => 'no-access'
         ]);
 
-        $rol = new Role();
-        $rol->role_id = '1';
-        $rol->user_id = '1';
-        $rol->save();
+        $user = new User();
+        $user->name = 'Admin';
+        $user->email = 'admin@example.com';
+        $user->email_verified_at = now();
+        $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $user->remember_token = Str::random(10);
+        $user->save();
+
+        $roles[0] = 1;
+        $user->roles()->sync($roles);
+
+        $user = new User();
+        $user->name = 'Client';
+        $user->email = 'client@example.com';
+        $user->email_verified_at = now();
+        $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $user->remember_token = Str::random(10);
+        $user->save();
+
+        $roles[0] = 2;
+        $user->roles()->sync($roles);
+
+        $user = new User();
+        $user->name = 'Customer';
+        $user->email = 'customer@example.com';
+        $user->email_verified_at = now();
+        $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $user->remember_token = Str::random(10);
+        $user->save();
+
+        $roles[0] = 3;
+        $user->roles()->sync($roles);
+
+        //factory(App\User::class, 2)->create();
+
+        
+
     }
 }

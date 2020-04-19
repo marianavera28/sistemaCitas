@@ -8,6 +8,7 @@ use Caffeinated\Shinobi\Models\Permission;
 
 class RoleController extends Controller
 {
+    private  $rolesPrincipales = ['Admin','Client','Customer'];
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +17,9 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::paginate();
+        $rolesPrincipales = $this->rolesPrincipales;
 
-        return view('roles.index', compact('roles'));
+        return view('roles.index', compact('roles','rolesPrincipales'));
     }
 
     /**
@@ -28,8 +30,8 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::get();
-
-        return view('roles.create', compact('permissions'));
+        $disabled = false;
+        return view('roles.create', compact('permissions','disabled'));
     }
 
     /**
@@ -40,11 +42,15 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $role = Role::create($request->all());
+        $role = new Role;
+        $role->name = $request->name;
+        $role->slug = $request->slug;
+        $role->description = $request->description;
+        $role->save(); 
 
         $role->permissions()->sync($request->get('permissions'));
 
-        return redirect()->route('roles.edit', $role->id)
+        return redirect()->route('roles.index')
             ->with('info', 'Rol guardado con éxito');
     }
 
@@ -70,10 +76,10 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::find($id);
-
         $permissions = Permission::get();
+        $disabled = true;
 
-        return view('roles.edit', compact('role', 'permissions'));
+        return view('roles.edit', compact('role', 'permissions', 'disabled'));
     }
 
     /**
@@ -86,11 +92,13 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
         $role = Role::find($id);
-        $role->update($request->all());
+        $role->slug = $request->slug;
+        $role->description = $request->description;
+        $role->save(); 
 
         $role->permissions()->sync($request->get('permissions'));
 
-        return redirect()->route('roles.edit', $role->id)
+        return redirect()->route('roles.index')
             ->with('info', 'Rol guardado con éxito');
     }
 
@@ -104,6 +112,13 @@ class RoleController extends Controller
     {
         $role = Role::find($id)->delete();
 
-        return back()->with('info', 'Eliminado correctamente');
+        $rolesPrincipales = $this->rolesPrincipales;
+
+        if(!in_array($user->name,$rolesPrincipales)){
+            $user->delete();
+            return back()->with('info', 'Eliminado correctamente');
+        }else{
+            return back()->with('warning', 'Usuario principal no se puede eliminar');
+        }
     }
 }

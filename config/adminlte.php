@@ -209,7 +209,7 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
+            'text' => 'Buscar',
             'search' => true,
             'topnav' => true,
         ],
@@ -219,20 +219,50 @@ return [
             'can'  => 'manage-blog',
         ],*/
         [
-            'text'        => 'Dashboard',
+            'text'        => 'Tablero',
             'url'         => 'admin',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
         ],
         [
-            'text'    => 'Module of citation',
+            'text'    => 'Módulo de Usuarios',
+            'icon'    => 'fas fa-fw fa-users',
+            'submenu' => [
+                [
+                    'text' => 'Lista de usuarios',
+                    'url'  => "users",
+                ],
+                [
+                    'text' => 'Crear Usuario',
+                    'url'  => "users/create",
+                ],
+                
+            ],
+        ],
+        [
+            'text'    => 'Módulo de Roles',
+            'icon'    => 'fas fa-fw fa-user-tie',
+            'submenu' => [
+                [
+                    'text' => 'Lista de roles',
+                    'url'  => "roles",
+                ],
+                [
+                    'text' => 'Crear Rol',
+                    'url'  => "roles/create",
+                ],
+                
+            ],
+        ],
+        [
+            'text'    => 'Módulo de Citaciones',
             'icon'    => 'fas fa-fw fa-calendar-alt',
             'submenu' => [
                 [
-                    'text' => 'Administration',
+                    'text' => 'Lista de citaciones',
                     'url'  => '#',
                 ],
                 [
-                    'text' => 'Schedule',
+                    'text' => 'Crear Cita',
                     'url'  => '#',
                 ],
                 /*[
@@ -262,14 +292,14 @@ return [
                 
             ],
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'CONFIGURACIÓN DE CUENTA'],
         [
-            'text' => 'profile',
+            'text' => 'Cuenta',
             'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-user-cog',
         ],
         [
-            'text' => 'change_password',
+            'text' => 'Cambiar Clave',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
@@ -326,7 +356,7 @@ return [
     'plugins' => [
         [
             'name' => 'Datatables',
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
@@ -363,7 +393,7 @@ return [
         ],
         [
             'name' => 'Chartjs',
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
@@ -374,7 +404,7 @@ return [
         ],
         [
             'name' => 'Sweetalert2',
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
@@ -383,6 +413,7 @@ return [
                 ],
             ],
         ],
+        
         [
             'name' => 'Pace',
             'active' => false,

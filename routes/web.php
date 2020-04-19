@@ -20,7 +20,6 @@ Route::get('/', function () {
    return redirect('/login');
 });	
 
-
 Route::middleware(['auth'])->group(function () {
 
 	//Superadministrador
@@ -61,26 +60,48 @@ Route::middleware(['auth'])->group(function () {
 		->middleware('permission:roles.edit');
 	
 	//Users
+	Route::post('users/store', 'UserController@store')->name('users.store')
+		->middleware('permission:users.create');
+
 	Route::get('users', 'UserController@index')->name('users.index')
 		->middleware('permission:users.index');
-
-	Route::put('users/{user}', 'UserController@update')->name('users.update')
-		->middleware('permission:users.edit');
-
-	Route::get('users/{user}', 'UserController@show')->name('users.show')
-		->middleware('permission:users.show');
-
-	Route::delete('users/{user}', 'UserController@destroy')->name('users.destroy')
-		->middleware('permission:users.destroy');
-
-	Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit')
-		->middleware('permission:users.edit');
 
 	Route::get('users/create', 'UserController@create')->name('users.create')
 		->middleware('permission:users.create');
 
-	Route::post('users/store', 'UserController@store')->name('users.store')
-		->middleware('permission:users.create');
+	Route::put('users/{role}', 'UserController@update')->name('users.update')
+		->middleware('permission:users.edit');
+
+	Route::get('users/{role}', 'UserController@show')->name('users.show')
+		->middleware('permission:users.show');
+
+	Route::delete('users/{role}', 'UserController@destroy')->name('users.destroy')
+		->middleware('permission:users.destroy');
+
+	Route::get('users/{role}/edit', 'UserController@edit')->name('users.edit')
+		->middleware('permission:users.edit');
+
+	//citas
+	Route::get('citas', 'CitaController@index')->name('citas.index')
+		->middleware('permission:users.index');
+
+	Route::put('citas/{user}', 'CitaController@update')->name('citas.update')
+		->middleware('permission:citas.edit');
+
+	Route::get('citas/{user}', 'CitaController@show')->name('citas.show')
+		->middleware('permission:citas.show');
+
+	Route::delete('citas/{user}', 'CitaController@destroy')->name('citas.destroy')
+		->middleware('permission:citas.destroy');
+
+	Route::get('citas/{user}/edit', 'CitaController@edit')->name('citas.edit')
+		->middleware('permission:citas.edit');
+
+	Route::get('citas/create', 'CitaController@create')->name('citas.create')
+		->middleware('permission:citas.create');
+
+	Route::post('citas/store', 'CitaController@store')->name('citas.store')
+		->middleware('permission:citas.create');
 });
 
 

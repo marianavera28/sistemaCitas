@@ -7,18 +7,18 @@
 
 @section('classes_body', 'login-page')
 
-@php( $dashboard_url = View::getSection('dashboard_url') ?? config('adminlte.dashboard_url', 'home') )
+@php( $Tablero_url = View::getSection('Tablero_url') ?? config('adminlte.Tablero_url', 'home') )
 
 @if (config('adminlte.use_route_url', false))
-    @php( $dashboard_url = $dashboard_url ? route($dashboard_url) : '' )
+    @php( $Tablero_url = $Tablero_url ? route($Tablero_url) : '' )
 @else
-    @php( $dashboard_url = $dashboard_url ? url($dashboard_url) : '' )
+    @php( $Tablero_url = $Tablero_url ? url($Tablero_url) : '' )
 @endif
 
 @section('body')
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ $dashboard_url }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
+            <a href="{{ $Tablero_url }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
         </div>
         <div class="card">
             <div class="card-body login-card-body">

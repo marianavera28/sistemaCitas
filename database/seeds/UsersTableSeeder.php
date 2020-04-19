@@ -25,13 +25,13 @@ class UsersTableSeeder extends Seeder
         Role::create([
             'name'      => 'Client',
             'slug'      => 'client',
-            'special'   => 'no-access'
+            'special'   => ''
         ]);
 
         Role::create([
             'name'      => 'Customer',
             'slug'      => 'customer',
-            'special'   => 'no-access'
+            'special'   => ''
         ]);
 
         $user = new User();

@@ -22,6 +22,7 @@
                     <tr>
                         <th align="center" width="20">ID</th>
                         <th align="center">Nombre</th>
+
                         @can('users.show')
                             <th align="center"></th>
                         @endcan
@@ -79,46 +80,4 @@
     </section>
 @endsection
 
-@section('js')
-    <script src="dist/plugins/sweetalert2/sweetalert2.min.js"></script>
-    <script src="dist/plugins/toastr/toastr.min.js"></script>
-
-    @if(session('info'))
-        <script type="text/javascript">
-
-            const success = @json(session('info'));
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000
-            });
-
-            Toast.fire({
-                icon: 'success',
-                title: success
-            });
-        </script>
-    @endif
-
-    @if(session('warning'))
-        <script type="text/javascript">
-
-            const warning = @json(session('warning'));
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000
-            });
-
-            Toast.fire({
-                icon: 'warning',
-                title: warning
-            });
-        </script>
-    @endif
-
-    <script type="text/javascript" src="dist/js/datatables.js"></script>
-@stop
 

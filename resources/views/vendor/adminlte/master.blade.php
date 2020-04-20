@@ -65,5 +65,37 @@
 <script src="{{ mix('js/app.js') }}"></script>
 @endif
 
+@if(session('info'))
+    <script type="text/javascript">
+        const success = @json(session('info'));
+        Swal.fire(
+          'Success!',
+          success,
+          'success'
+        )
+    </script>
+@endif
+
+@if(session('warning'))
+    <script type="text/javascript">
+        const warning = @json(session('warning'));
+        Swal.fire(
+          'Warning!',
+          warning,
+          'warning'
+        )
+    </script>
+@endif
+
+@if(session('danger'))
+    <script type="text/javascript">
+        const danger = @json(session('danger'));
+        Swal.fire(
+          'Danger!',
+          danger,
+          'error'
+        )
+    </script>
+@endif
 </body>
 </html>

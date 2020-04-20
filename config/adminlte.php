@@ -212,58 +212,68 @@ return [
             'text' => 'Buscar',
             'search' => true,
             'topnav' => true,
+            'role'    => ['Admin','Client'],
         ],
         /*[
             'text' => 'blog',
             'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'role'  => 'manage-blog',
         ],*/
         [
-            'text'        => 'Tablero',
+            'text'        => 'Inicio',
             'url'         => 'admin',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
+            'role'        => ['Admin','Client'],
         ],
         [
-            'text'    => 'Módulo de Usuarios',
+            'text'    => 'Usuarios',
             'icon'    => 'fas fa-fw fa-users',
             'submenu' => [
                 [
                     'text' => 'Lista de usuarios',
                     'url'  => "users",
+                    'role'    => ['Admin','Client'], 
                 ],
                 [
                     'text' => 'Crear Usuario',
                     'url'  => "users/create",
+                    'role'    => ['Admin','Client'], 
                 ],
                 
             ],
+            'role'    => ['Admin','Client'],
         ],
         [
-            'text'    => 'Módulo de Roles',
+            'text'    => 'Roles',
             'icon'    => 'fas fa-fw fa-user-tie',
             'submenu' => [
                 [
                     'text' => 'Lista de roles',
                     'url'  => "roles",
+                    'role'    => ['Admin','Client'],
                 ],
                 [
                     'text' => 'Crear Rol',
                     'url'  => "roles/create",
+                    'role'    => ['Admin'],
                 ],
                 
             ],
+            'role'    => ['Admin','Client'],
         ],
         [
-            'text'    => 'Módulo de Citaciones',
+            'text'    => 'Control de citas',
             'icon'    => 'fas fa-fw fa-calendar-alt',
             'submenu' => [
                 [
                     'text' => 'Lista de citaciones',
                     'url'  => '#',
+                    'role'    => ['Admin'],
                 ],
                 [
                     'text' => 'Crear Cita',
                     'url'  => '#',
+                    'role'    => ['Admin'],
                 ],
                 /*[
                     'text'    => 'level_one',
@@ -291,32 +301,21 @@ return [
                 ],*/
                 
             ],
+            'role'    => ['Admin'],
         ],
         ['header' => 'CONFIGURACIÓN DE CUENTA'],
         [
-            'text' => 'Cuenta',
+            'text' => 'Perfil',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user-cog',
+            'role' => ['Admin','Client'],
         ],
         [
             'text' => 'Cambiar Clave',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
+            'role'    => ['Admin','Client'],
         ],
-        
-        /*['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'aqua',
-        ],*/
     ],
 
     /*
@@ -361,17 +360,37 @@ return [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+                    'location' => url('dist/plugins/datatables/jquery.dataTables.min.js'),
                 ],
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+                    'location' => url('dist/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'),
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => url('dist/plugins/datatables-responsive/js/dataTables.responsive.min.js'),
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => url('dist/plugins/datatables-responsive/js/responsive.bootstrap4.min.js'),
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => url('dist/js/datatables.js'),
                 ],
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                    'location' => url('dist/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'),
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => url('dist/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'),
                 ],
             ],
         ],
@@ -413,7 +432,6 @@ return [
                 ],
             ],
         ],
-        
         [
             'name' => 'Pace',
             'active' => false,

@@ -108,7 +108,7 @@ class UserController extends Controller
             $user->delete();
             return back()->with('info', 'Eliminado correctamente');
         }else{
-            return back()->with('warning', 'Usuario principal no se puede eliminar');
+            return back()->with('danger', 'Usuario principal no se puede eliminar');
         }
 
     }
